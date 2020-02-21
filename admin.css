@@ -1,0 +1,247 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    
+    font-family: 'Poppins', sans-serif;
+    font-weight:300;
+}
+
+body {
+
+}
+
+#flights {
+    margin-top:25px;
+}
+
+.wrapper {
+    width:100%;
+    max-width:1600px;
+    margin-left:auto;
+    margin-right:auto;
+
+    border-radius:5px;
+    background-color:#F0F1F2;
+}
+
+.flight-container {
+    display:grid;
+    grid-template-columns: 5fr 5fr 10fr 10fr 10fr 10fr 5fr 5fr 5fr 5fr;
+    width:100%;
+    padding:20px;
+    background-color:white;
+    border-bottom:1px solid rgba(0, 0, 0, 0.1);
+    grid-row-gap:50px;
+}
+
+.flight-container:nth-child(2n+1) {
+    background-color:#F0F1F2;
+}
+
+#flightContainerHeadings > div {
+    font-weight:400;
+}
+
+#add-new-flight {
+    padding:10px 30px;
+    margin-left:20px;
+    margin-bottom:20px;
+    margin-top:20px;
+    text-decoration:none;
+    height:50px;
+
+    border:none;
+    background-color: #3596F3;
+    font-weight:400;
+    color:white;
+    font-size:20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.action-btn {
+    
+    margin-right:5px;
+    text-decoration:none;
+    display:grid;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+}
+
+
+.invalid{
+    background-color: rgba(255,45,0,0.5) !important;
+    color:white;
+  }
+
+  #admin-navbar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:20px;
+
+  }
+
+  #modalFormContainer {
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0, 0, 0, 0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    display:grid;
+  }
+
+  .modal-form {
+      margin:auto;
+      display:grid;
+      width:100%;
+      max-width:1000px;
+      padding:20px;
+      border-radius: 5px;
+  }
+
+  .modal-form:nth-child(2n+1) {
+    background-color:#F0F1F2;
+}
+
+.modal-form:nth-child(2n+0) {
+    background-color:white;
+}
+
+  .modal-form > input {
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    background: #fbfbfb;
+    border-radius: 5px;
+    border: 1px solid #7e8993;
+
+  }
+
+  .modal-form > label { 
+    padding:10px;
+    font-weight:400;
+  }
+
+  .modal-form button { 
+    border:none;
+    margin-top:10px;
+    padding:10px;
+    font-weight:400;
+
+    color:white;
+    width:50%;
+    height:50px !important;
+    
+    padding:5px; text-decoration:none;
+  }
+
+
+  .green-btn {
+    background-color:#30A745;
+    color:white;
+    border-radius:5px;
+    border:none;
+
+  }
+
+  .modal-form .modal-btn {
+      justify-self:right;
+      margin-top:20px;
+      cursor:pointer;
+  }
+
+
+  .red-btn {
+    background-color:#DC3545; 
+    color:white;
+    border-radius:5px;
+  }
+
+  .form-heading {
+      display:flex;
+      justify-content:space-between;
+  }
+
+  .x-btn {
+      font-size:20px;
+      width:50px !important;
+      border-radius:5px;
+      cursor:pointer;
+      display:grid;
+      align-items:center;
+      justify-items:center;
+  }
+
+  /* LOGIN CONTAINER */
+
+  #adminLoginContainer {
+      display:grid;
+      align-items:center;
+      justify-content:center;
+      background-color:#F1F1F1;
+      width:100vw;
+      height:100vh;
+  }
+
+  #adminLoginBox {
+    display:grid;
+    margin-top:-150px;
+  }
+
+  #adminLoginContainer h1 {
+    text-align:center;
+}
+
+#adminLoginContainer .momondo-a {
+    margin:auto;
+}
+
+#adminLoginForm {
+    margin-top:50px;
+    display:grid;
+    padding:40px;
+    background-color: white;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+
+#adminLoginForm input {
+    margin-top:50px;
+    display:grid;
+    margin-top:10px;
+    margin-bottom:10px;
+    padding:10px;
+    background-color: white;
+    height:40px;
+    width:400px;
+    background: #fbfbfb;
+    border-radius: 5px;
+    border: 1px solid #7e8993;
+}
+
+#adminLoginForm .blue-btn {
+    border:none;
+    margin-top:10px;
+    padding:10px;
+    font-weight:400;
+    background-color: #307BFF;
+    border-radius:5px;
+    color:white;
+    width:50%;
+    height:50px !important;
+    justify-self:right;
+    padding:5px; text-decoration:none;
+    cursor:pointer;
+}
+
+.back-btn {
+    color:black;
+    text-decoration:none;
+    font-size:80%;
+    padding:20px;
+}

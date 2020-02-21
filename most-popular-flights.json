@@ -1,0 +1,57 @@
+[
+    {
+        "id": "747329",
+        "flightId": "123",
+        "companyName": "Lufthansa",
+        "companyShortcut": "LUF",
+        "departureTime": "123",
+        "arrivalTime": "1234",
+        "price": "20000",
+        "currency": "ZAR",
+        "totalTime": 1111
+    },
+    {
+        "id": "b6e16e",
+        "flightId": "KLM29",
+        "companyName": "LUFTHANSERS",
+        "companyShortcut": "SEK",
+        "departureTime": "123123",
+        "arrivalTime": "123",
+        "price": "123",
+        "currency": "SEK",
+        "totalTime": -123000
+    },
+    {
+        "id": "295314",
+        "flightId": "KL22",
+        "companyName": "asd",
+        "companyShortcut": "asd",
+        "departureTime": "1123123213",
+        "arrivalTime": "123213213",
+        "price": "123",
+        "currency": "1ss",
+        "totalTime": -999910000
+    },
+    {
+        "id": "2b4287",
+        "flightId": "1123",
+        "companyName": "KLM",
+        "companyShortcut": "KLMa",
+        "departureTime": "2002",
+        "arrivalTime": "2003",
+        "price": "2015",
+        "currency": "DKK",
+        "totalTime": 1
+    },
+    {
+        "id": "b1aa5b",
+        "flightId": "KLM89",
+        "companyName": "KLM",
+        "companyShortcut": "a",
+        "departureTime": "111111",
+        "arrivalTime": "11111111111",
+        "price": "2015",
+        "currency": "ZAR",
+        "totalTime": 11111000000
+    }
+]
