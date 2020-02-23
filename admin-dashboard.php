@@ -51,6 +51,12 @@
       $sData = file_get_contents('most-popular-flights.json');
       $jData = json_decode($sData);
 
+
+      //Sorying
+      function sortScheduleByOrder($a, $b) {
+        return strcmp($a->order, $b->order);
+      }
+
       foreach($jData as $index => $jFlight){
         echo "<div id='flight-$jFlight->id' class='flight-container'>
         
@@ -70,9 +76,25 @@
         <button class='action-btn green-btn' onclick=(clickUpdate(this))>UPDATE</button>
         </div>";
 
+        // asort($jFlight->schedule->order);
+        // $aFlightSchedule = $jFlight->schedule;
+        // print_r($aFlightSchedule);
+
+        // asort($aFlightSchedule);
+        // Sorting schedule by order of flights
+
+
+        usort($jFlight->schedule, "sortScheduleByOrder");
+
         foreach($jFlight->schedule as $key => $jSchedule){
         //   // echo $jSchedule;
-        echo $jFlight->schedule[$key]->test;
+        // echo $jFlight->schedule[$key]->id;
+        // echo print_r($jSchedule);
+
+        $singleSchedule = $jFlight->schedule[$key];
+        $stop = $singleSchedule->order + 1;
+        echo "<div>Stop: $stop = $singleSchedule->id</div>";
+        
 
         }
         

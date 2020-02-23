@@ -9,12 +9,11 @@
         "price": "20000",
         "currency": "ZAR",
         "totalTime": 1111,
-        "schedule": [
-            {"test":"one"},
-            {"test":"two"},
-            {"test":"three"},
-            {"test":"three"},
-            {"test":"three"}
+        "schedule":
+        [
+            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":1},
+            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":3},
+            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
         ]
     },
     {
@@ -26,7 +25,13 @@
         "arrivalTime": "123",
         "price": "123",
         "currency": "SEK",
-        "totalTime": 123000
+        "totalTime": 123000,
+        "schedule":
+        [
+            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
+            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
+            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        ]
     },
     {
         "id": "295314",
@@ -37,7 +42,13 @@
         "arrivalTime": "123213213",
         "price": "123",
         "currency": "1ss",
-        "totalTime": -999910000
+        "totalTime": -999910000,
+        "schedule":
+        [
+            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
+            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
+            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        ]
     },
     {
         "id": "2b4287",
@@ -48,7 +59,13 @@
         "arrivalTime": "2003",
         "price": "2015",
         "currency": "DKK",
-        "totalTime": 1
+        "totalTime": 1,
+        "schedule":
+        [
+            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
+            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
+            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        ]
     },
     {
         "id": "b1aa5b",
@@ -59,7 +76,13 @@
         "arrivalTime": "11111111111",
         "price": "2015",
         "currency": "ZAR",
-        "totalTime": 11111000000
+        "totalTime": 11111000000,
+        "schedule":
+        [
+            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
+            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
+            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        ]
     },
     {
         "id": "d99500",
@@ -70,6 +93,12 @@
         "arrivalTime": "123333",
         "price": "123",
         "currency": "ZAR",
-        "totalTime": 1000
+        "totalTime": 1000,
+        "schedule":
+        [
+            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
+            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
+            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        ]
     }
 ]
