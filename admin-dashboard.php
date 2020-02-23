@@ -35,20 +35,6 @@
     
     <div class="wrapper">
       <button onclick="clickAdd()" type="button" id="add-new-flight">+ ADD NEW FLIGHT</button>
-      
-      <!-- <div class="create-flight-container">
-        <form action="api-save-flight.php" method="POST">
-          <input name="flight-flightId" oninput="validate(this)" type="text" placeholder="Flight ID (Eg KL222)" required="required" data-validate="yes" data-type="string">
-          <input name="flight-companyName" oninput="validate(this)" type="text" placeholder="Company Name" required="required" data-validate="yes" data-type="string">
-          <input name="flight-companyShortcut" oninput="validate(this)" type="text" placeholder="Company Shortcut" required="required" data-validate="yes" data-type="string">
-          <input name="flight-departureTime" oninput="validate(this)" type="text" placeholder="Departure Time" required="required" data-validate="yes" data-type="integer">
-          <input name="flight-arrivalTime" oninput="validate(this)" type="text" placeholder="Arrival Time" required="required" data-validate="yes" data-type="integer">
-          <input name="flight-price" oninput="validate(this)" type="text" placeholder="Price" required="required" data-validate="yes" data-type="integer">
-          <input name="flight-currency" oninput="validate(this)" type="text" placeholder="Currency" required="required" data-validate="yes" data-type="string">
-          <button type="submit" onclick="validate(this)">SAVE</button> 
-      </form>
-
-      </div> -->
       <!-- END CREATE FLIGHT CONTAINER -->
       <div id="flightContainerHeadings" class='flight-container'>
         <div>ID</div>
@@ -65,8 +51,9 @@
       $sData = file_get_contents('most-popular-flights.json');
       $jData = json_decode($sData);
 
-      foreach($jData as $jFlight){
+      foreach($jData as $index => $jFlight){
         echo "<div id='flight-$jFlight->id' class='flight-container'>
+        
         <div>$jFlight->id </div>
         <div>$jFlight->flightId </div>
         <div>$jFlight->companyName </div>
@@ -76,11 +63,18 @@
         <div>$jFlight->price</div>
         <div>$jFlight->currency</div>
 
+
         <a class='action-btn red-btn' href='admin-delete-flight.php?id=$jFlight->id'>
           DELETE
         </a>
         <button class='action-btn green-btn' onclick=(clickUpdate(this))>UPDATE</button>
         </div>";
+
+        foreach($jFlight->schedule as $key => $jSchedule){
+        //   // echo $jSchedule;
+        echo $jFlight->schedule[$key]->test;
+
+        }
         
       }
     ?>
