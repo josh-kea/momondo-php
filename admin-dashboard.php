@@ -41,10 +41,11 @@
         <div>Flight ID</div>
         <div>Company</div>
         <div>Company Code</div>
-        <div>Departure Time</div>
-        <div>Arrival Time</div>
+        <div>Departure Date</div>
+        <div>Arrival Date</div>
         <div>Price</div>
         <div>Currency</div>
+        <div>Total Time</div>
         <div>Actions</div>
       </div>
     <?php
@@ -52,22 +53,49 @@
       $jData = json_decode($sData);
 
 
-      //Sorying
+      //Sorting function
       function sortScheduleByOrder($a, $b) {
         return strcmp($a->order, $b->order);
       }
 
       foreach($jData as $index => $jFlight){
+
+        // Sorting schedule of each individual $jFlight
+        usort($jFlight->schedule, "sortScheduleByOrder");
+
+        // Calculating the total time for each flight - resetting each loop
+        $jFlight->totalTime = 0;
+
+        foreach($jFlight->schedule as $key => $jSchedule){
+          $jSingleSchedule = $jFlight->schedule[$key];
+          $jFlight->totalTime = $jFlight->totalTime + $jSingleSchedule->flightTime + $jSingleSchedule->waitingTime;
+        };
+        $iFirstDepartureDate =0;
+        $iFirstDepartureDate = $jFlight->schedule[0]->date;
+        $sFirstDepartureDate = date("Y-M-d H:i", substr($iFirstDepartureDate, 0, 10));
+
+        $iFinalArrivalDate = 0;
+        if (isset($jFlight->totalTime)){
+          $iFinalArrivalDate = $iFirstDepartureDate + $jFlight->totalTime;
+          $sFinalArrivalDate = date("Y-M-d H:i", substr($iFinalArrivalDate, 0, 10));
+        }
+        
+        
+
+        $iTotalTimeMinutes = round($jFlight->totalTime / 60);
+        // echo date("Y-m-d G:i:s", $iFinalArrivalDate);
+
         echo "<div id='flight-$jFlight->id' class='flight-container'>
         
         <div>$jFlight->id </div>
         <div>$jFlight->flightId </div>
         <div>$jFlight->companyName </div>
         <div>$jFlight->companyShortcut </div>
-        <div>$jFlight->departureTime </div>
-        <div>$jFlight->arrivalTime </div>
+        <div>$sFirstDepartureDate</div>
+        <div>$sFinalArrivalDate</div>
         <div>$jFlight->price</div>
         <div>$jFlight->currency</div>
+        <div>$iTotalTimeMinutes mins.</div>
 
 
         <a class='action-btn red-btn' href='admin-delete-flight.php?id=$jFlight->id'>
@@ -84,17 +112,18 @@
         // Sorting schedule by order of flights
 
 
-        usort($jFlight->schedule, "sortScheduleByOrder");
+
 
         foreach($jFlight->schedule as $key => $jSchedule){
         //   // echo $jSchedule;
         // echo $jFlight->schedule[$key]->id;
         // echo print_r($jSchedule);
 
-        $singleSchedule = $jFlight->schedule[$key];
-        $stop = $singleSchedule->order + 1;
-        echo "<div>Stop: $stop = $singleSchedule->id</div>";
-        
+        $jSingleSchedule = $jFlight->schedule[$key];
+        $sStopNumber = $jSingleSchedule->order;
+
+        echo "<div>Stop: $sStopNumber | $jSingleSchedule->id | FROM: $jSingleSchedule->from | TO: $jSingleSchedule->to | DATE: $jSingleSchedule->date  </div>";
+          
 
         }
         
@@ -117,8 +146,6 @@
                   <label for="flight-flightId">Flight ID</label><input name="flight-flightId" oninput="validate(this)" type="text" placeholder="Flight ID (Eg KL222)" required="required" data-validate="yes" data-type="string" value=${aFlightDivs[1].innerHTML}>
                   <label for="flight-companyName">Company Name</label><input name="flight-companyName" oninput="validate(this)" type="text" placeholder="Company Name" required="required" data-validate="yes" data-type="string" value=${aFlightDivs[2].innerHTML}>
                   <label for="flight-companyShortcut">Company Code</label><input name="flight-companyShortcut" oninput="validate(this)" type="text" placeholder="Company Shortcut" required="required" data-validate="yes" data-type="string" value=${aFlightDivs[3].innerHTML}>
-                  <label for="flight-departureTime">Departure Time</label><input name="flight-departureTime" oninput="validate(this)" type="text" placeholder="Departure Time" required="required" data-validate="yes" data-type="integer" value=${aFlightDivs[4].innerHTML}>
-                  <label for="flight-arrivalTime">Arrival Time</label><input name="flight-arrivalTime" oninput="validate(this)" type="text" placeholder="Arrival Time" required="required" data-validate="yes" data-type="integer" value=${aFlightDivs[5].innerHTML}>
                   <label for="flight-price">Price</label><input name="flight-price" oninput="validate(this)" type="text" placeholder="Price" required="required" data-validate="yes" data-type="integer" value=${aFlightDivs[6].innerHTML}>
                   <label for="flight-currency">Currency</label><input name="flight-currency" oninput="validate(this)" type="text" placeholder="Currency" required="required" data-validate="yes" data-type="string" value=${aFlightDivs[7].innerHTML}>
                   
@@ -139,11 +166,19 @@
                   <label for="flight-flightId">Flight ID</label><input name="flight-flightId" oninput="validate(this)" type="text" placeholder="Flight ID (Eg KL222)" required="required" data-validate="yes" data-type="string" >
                   <label for="flight-companyName">Company Name</label><input name="flight-companyName" oninput="validate(this)" type="text" placeholder="Company Name" required="required" data-validate="yes" data-type="string">
                   <label for="flight-companyShortcut">Company Code</label><input name="flight-companyShortcut" oninput="validate(this)" type="text" placeholder="Company Shortcut" required="required" data-validate="yes" data-type="string">
-                  <label for="flight-departureTime">Departure Time</label><input name="flight-departureTime" oninput="validate(this)" type="text" placeholder="Departure Time" required="required" data-validate="yes" data-type="integer">
-                  <label for="flight-arrivalTime">Arrival Time</label><input name="flight-arrivalTime" oninput="validate(this)" type="text" placeholder="Arrival Time" required="required" data-validate="yes" data-type="integer">
                   <label for="flight-price">Price</label><input name="flight-price" oninput="validate(this)" type="text" placeholder="Price" required="required" data-validate="yes" data-type="integer">
                   <label for="flight-currency">Currency</label><input name="flight-currency" oninput="validate(this)" type="text" placeholder="Currency" required="required" data-validate="yes" data-type="string">
-                  
+                  <div class="modal-schedule">
+                    <p> Schedule</p>
+                    <input name="schedule-order" oninput="validate(this)" type="text" placeholder="Order" required="required" data-validate="yes" data-type="integer">
+                    <input name="schedule-icon" oninput="validate(this)" type="text" placeholder="Airline Icon" required="required" data-validate="yes" data-type="string">
+                    <input name="schedule-date" oninput="validate(this)" type="number" placeholder="Date" required="required" data-validate="yes" data-type="integer">
+                    <input name="schedule-id" oninput="validate(this)" type="text" placeholder="ID(eg. SAS1)" required="required" data-validate="yes" data-type="string">
+                    <input name="schedule-from" oninput="validate(this)" type="text" placeholder="From" required="required" data-validate="yes" data-type="string">
+                    <input name="schedule-to" oninput="validate(this)" type="text" placeholder="To" required="required" data-validate="yes" data-type="string">
+                    <input name="schedule-waitingTime" oninput="validate(this)" type="number" placeholder="Wait Time" required="required" data-validate="yes" data-type="integer">
+                    <input name="schedule-flightTime" oninput="validate(this)" type="number" placeholder="Flying Time" required="required" data-validate="yes" data-type="integer">
+                  </div>
                   <button class="modal-btn green-btn" type="submit" onclick="validate(this)">CREATE FLIGHT</button> 
         </form>
         
@@ -204,7 +239,7 @@
       
         else if (oButtonOrInput.nodeName == "INPUT" ){
           
-          let oButton = oButtonOrInput.parentNode.querySelector('button');
+          let oButton = oButtonOrInput.parentNode.parentNode.querySelector('button');
           oButton.disabled = false;
         // console.log(oButtonOrInput.value.length);
         // console.log(oButtonOrInput.nodeName)

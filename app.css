@@ -73,26 +73,32 @@ nav a:first-child{
   padding: 2% 5%;
   background-color: rgba(255, 255, 255, 0.01);
 }
-#search :nth-child(2){
-  color: #555;
-  background-color: white;
-}
+
 #btnSearch{
   color: white;
   background-color: rgba(222, 22, 102, 1);
 }
-#boxFromCity{
+#boxFromCity, #boxToCity{
   position: relative;
 }
-#boxFromCity #fromCityResults{
+#boxFromCity #fromCityResults, #boxToCity #toCityResults{
   display: none;
   position: absolute;
   width: 100%;
-  padding: 10px;
+  background-color:white;
+  color:black;
   top: 41px;
   border-radius: 0px 0px 10px 10px;
 }
+.rendered-city {
+  cursor:pointer;
+  padding:10px;
+}
 
+.rendered-city:hover {
+  background-color:rgba(0,0,0, 0.2);
+  color:white;
+}
 /*##############################*/
 section#temporal{
   width: 100%;
@@ -185,4 +191,16 @@ main{
 
 .airline-icon{
   width: 40px;
+}
+
+/* MODAL BUY CONTAINER */
+
+#modalBuyContainer {
+  width:100vw;
+  height:100vh;
+  background-color:rgba(0, 0, 0, 0.5);
+  position:fixed;
+  top:0;
+  left:0;
+  display:grid;
 }

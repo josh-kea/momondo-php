@@ -27,7 +27,7 @@ body {
 
 .flight-container {
     display:grid;
-    grid-template-columns: 5fr 5fr 10fr 10fr 10fr 10fr 5fr 5fr 5fr 5fr;
+    grid-template-columns: 5fr 5fr 10fr 10fr 10fr 10fr 5fr 5fr 5fr 5fr 5fr;
     width:100%;
     padding:20px;
     background-color:white;
@@ -35,7 +35,7 @@ body {
     grid-row-gap:50px;
 }
 
-.flight-container:nth-child(2n+1) {
+.flight-container:nth-child(2n+2) {
     background-color:#F0F1F2;
 }
 

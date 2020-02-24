@@ -1,13 +1,99 @@
 <?php
 $sData = file_get_contents('most-popular-flights.json');
+
 $jData = json_decode($sData);
+
+if ( !isset($_GET['fromCity']) && !isset($_GET['toCity'])){
+  $jData = json_decode($sData);
+} else {
+  // FILTERING THE JSON DATA FOR SELECTED CITIES
+  $jUnfilteredData = json_decode($sData);
+
+  foreach($jUnfilteredData as $key => $jFlight){
+    // Sorting schedules by order
+    usort($jFlight->schedule, "sortScheduleByOrder");
+
+    // COUNTING LENGTH OF ARRAY
+    $jFlight->totalStops = count($jFlight->schedule);
+    $iIndexFinal = $jFlight->totalStops - 1;
+
+    foreach($jFlight->schedule as $index => $jFlightSchedule) {
+
+      $sFirstFromCity = strtolower($jFlight->schedule[0]->from);
+      $sFinalToCity = strtolower($jFlight->schedule[$iIndexFinal]->to);
+
+      $sSearchFromCity = strtolower($_GET['fromCity']);
+      $sSearchToCity = strtolower($_GET['toCity']);
+
+      if ( !$sFirstFromCity === $sSearchFromCity && !$sFinalToCity === $sSearchToCity ){
+        $jData = json_decode($sData);
+        
+      } else if ( $sFirstFromCity === $sSearchFromCity && $sFinalToCity === $sSearchToCity ) {
+        $jData = array();
+
+        array_push($jData, $jUnfilteredData[$key]);
+      }
+      // $sFlightFinalDestination = $jFlight->schedule[$iIndexFinal]->to;
+    }
+  }
+}
+
+
+
 $sFlightsDivs = '';
-foreach($jData as $jFlight){
+
+function sortScheduleByOrder($a, $b) {
+  return $a->order - $b->order;
+}
+
+function sortFlightsByCheapest($a, $b) {
+  return $a->price - $b->price;
+}
+
+function sortFlightsByFastest($a, $b) {
+  return $a->totalTime - $b->totalTime;
+}
+
+usort($jData, "sortFlightsByCheapest");
+
+foreach($jData as $index => $jFlight){
+
+  // Sorting schedule of each individual $jFlight
+  usort($jFlight->schedule, "sortScheduleByOrder");
+
   $iCheapestPrice = $iCheapestPrice ?? $jFlight->price;
   if($jFlight->price < $iCheapestPrice){
     $iCheapestPrice = $jFlight->price;
   }
-  $sDepartureDate = date("Y-M-d H:i", substr($jFlight->departureTime, 0, 10)); 
+
+  $iFirstDepartureDate =0;
+  $iFirstDepartureDate = $jFlight->schedule[0]->date;
+  $sFirstDepartureDate = date("Y-M-d H:i", substr($iFirstDepartureDate, 0, 10));
+
+  // Calculating the total time for each flight - resetting each loop
+  $jFlight->totalTime = 0;
+
+  foreach($jFlight->schedule as $key => $jSchedule){
+    $jSingleSchedule = $jFlight->schedule[$key];
+    $jFlight->totalTime = $jFlight->totalTime + $jSingleSchedule->flightTime + $jSingleSchedule->waitingTime;
+  };
+
+  $iTotalTimeMinutes = round($jFlight->totalTime / 60);
+
+  $iFinalArrivalDate = 0;
+  $iFinalArrivalDate = $iFirstDepartureDate + $jFlight->totalTime;
+  $sFinalArrivalDate = date("Y-M-d H:i", substr($iFinalArrivalDate, 0, 10));
+ 
+  $jFlight->totalStops = count($jFlight->schedule);
+  $iIndexFinal = $jFlight->totalStops - 1;
+
+  $sFlightFirstFrom = $jFlight->schedule[0]->from;
+  $sFlightFinalDestination = $jFlight->schedule[$iIndexFinal]->to;
+
+
+  $sStopText = "";
+
+  $sFlightData = json_encode($jFlight);
 
   $sFlightsDivs .= "
     <div id='flight'>
@@ -20,16 +106,16 @@ foreach($jData as $jFlight){
           <img class='airline-icon' src='$jFlight->companyShortcut.png'>
         </div>
         <div>
-          $sDepartureDate - 18:30
+          $sFirstDepartureDate - $sFinalArrivalDate
           <p>$jFlight->companyShortcut</p>              
         </div>
         <div>
-          1 stop
-          <p>Amsterdam</p>
+          $jFlight->totalStops stops
+          <p>direct</p>
         </div>
         <div>
           10h. 20min.
-          <p>CPH-MIA</p>
+          <p>$sFlightFirstFrom - $sFlightFinalDestination</p>
         </div>
       </div>
       <div class='row'>
@@ -56,9 +142,9 @@ foreach($jData as $jFlight){
     </div>
     <div id='flight-buy'>
       <div>
-        $jFlight->price Kr.
+        $jFlight->price $jFlight->currency
       </div>
-      <button>BUY</button>
+      <button onclick=(buyModal($sFlightData))>BUY</button>
     </div>
   </div>
   ";
@@ -91,16 +177,19 @@ foreach($jData as $jFlight){
   <section id="search">
     
     <div id="boxFromCity">
-      <input oninput="getFromCities()" type="text" placeholder="from city">
+      <input id="inputFromCity" oninput="getFromCities(this)" type="text" placeholder="From city">
       <div id="fromCityResults"></div>
     </div>
 
 
     <button>&lt;- -&gt;</button>
-    <input type="text" placeholder="to city">
+    <div id="boxToCity">
+      <input id="inputToCity" oninput="getToCities(this)" type="text" placeholder="To city">
+      <div id="toCityResults"></div>
+    </div>
     <input type="text" placeholder="from date">
     <input type="text" placeholder="to date">
-    <button id="btnSearch">SEARCH</button>
+    <button id="btnSearch" onclick="searchCities()">SEARCH</button>
   </section>
 
   <section id="temporal">
@@ -161,6 +250,25 @@ foreach($jData as $jFlight){
   </main>
 
   <script src="app.js"></script>
+  <script>
+    function buyModal(flightData){
+      console.log(flightData);
+      let modalBuyForm = `
+      <div id="modalBuyContainer">
+        <h1> You are purchasing Flight ${flightData.id}</h1>
 
+        <form class="modal-form" action="api-update-flight.php?id" method="POST">
+        <div class="form-heading"><h1>You are editing flight with ID: </h1><div class="x-btn red-btn" onclick=(this.parentNode.parentNode.parentNode.remove())>X</div></div>
+                  
+                  
+                  <button class="modal-btn green-btn" type="submit" onclick="validate(this)">UPDATE</button> 
+        </form>
+        
+      </div>
+      `
+      document.querySelector('body').innerHTML += modalBuyForm;
+    };
+    
+  </script>
 </body>
 </html>

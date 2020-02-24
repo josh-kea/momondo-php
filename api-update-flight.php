@@ -5,8 +5,6 @@ if(
         $_POST['flight-flightId'] &&
         $_POST['flight-companyName'] && 
         $_POST['flight-companyShortcut'] &&
-        $_POST['flight-departureTime'] &&
-        $_POST['flight-arrivalTime'] &&
         $_POST['flight-price'] &&
         $_POST['flight-currency']
     ){
@@ -18,16 +16,11 @@ if(
 
         foreach($jData as $jFlight){
             if($sFlightId == $jFlight->id){
-                $sTotalTime = ($_POST['flight-arrivalTime'] - $_POST['flight-departureTime']);
-
                 $jFlight->flightId = $_POST['flight-flightId'];
                 $jFlight->companyName = $_POST['flight-companyName'];
                 $jFlight->companyShortcut = $_POST['flight-companyShortcut'];
-                $jFlight->departureTime = $_POST['flight-departureTime'];
-                $jFlight->arrivalTime = $_POST['flight-arrivalTime'];
                 $jFlight->price = $_POST['flight-price'];
                 $jFlight->currency = $_POST['flight-currency'];
-                $jFlight->totalTime = $sTotalTime;
         }
     }
             

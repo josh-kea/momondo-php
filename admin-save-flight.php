@@ -17,8 +17,6 @@
         <input name="flight-flightId" oninput="validate(this)" type="text" placeholder="Flight ID (Eg KL222)" required="required" data-validate="yes" data-type="string">
         <input name="flight-companyName" oninput="validate(this)" type="text" placeholder="Company Name" required="required" data-validate="yes" data-type="string">
         <input name="flight-companyShortcut" oninput="validate(this)" type="text" placeholder="Company Shortcut" required="required" data-validate="yes" data-type="string">
-        <input name="flight-departureTime" oninput="validate(this)" type="text" placeholder="Departure Time" required="required" data-validate="yes" data-type="integer">
-        <input name="flight-arrivalTime" oninput="validate(this)" type="text" placeholder="Arrival Time" required="required" data-validate="yes" data-type="integer">
         <input name="flight-price" oninput="validate(this)" type="text" placeholder="Price" required="required" data-validate="yes" data-type="integer">
         <input name="flight-currency" oninput="validate(this)" type="text" placeholder="Currency" required="required" data-validate="yes" data-type="string">
         <button type="submit" onclick="validate(this)">SAVE</button> 

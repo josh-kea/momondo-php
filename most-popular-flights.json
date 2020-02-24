@@ -1,19 +1,22 @@
 [
     {
         "id": "747329",
-        "flightId": "123",
+        "flightId": "KLM29",
         "companyName": "Lufthansa",
-        "companyShortcut": "LUF",
-        "departureTime": "123",
-        "arrivalTime": "1234",
+        "companyShortcut": "AF",
         "price": "20000",
         "currency": "ZAR",
-        "totalTime": 1111,
-        "schedule":
-        [
-            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":1},
-            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":3},
-            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        "schedule": [
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581504200,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Brussels",
+                "waitingTime": 400,
+                "flightTime": 1600,
+                "order": 1
+            }
         ]
     },
     {
@@ -21,16 +24,39 @@
         "flightId": "KLM29",
         "companyName": "LUFTHANSERS",
         "companyShortcut": "SEK",
-        "departureTime": "123123",
-        "arrivalTime": "123",
         "price": "123",
         "currency": "SEK",
-        "totalTime": 123000,
-        "schedule":
-        [
-            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
-            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
-            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        "schedule": [
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Cape Town",
+                "to": "Anaheim",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "KL.png",
+                "date": 1581510000,
+                "id": "SAS33",
+                "from": "Anaheim",
+                "to": "Cape Town",
+                "waitingTime": 60,
+                "flightTime": 180,
+                "order": 1
+            },
+            {
+                "airlineIcon": "LH.png",
+                "date": 1581513600,
+                "id": "SAS22",
+                "from": "Cape Town",
+                "to": "Minnesota",
+                "waitingTime": 120,
+                "flightTime": 240,
+                "order": 2
+            }
         ]
     },
     {
@@ -38,67 +64,79 @@
         "flightId": "KL22",
         "companyName": "asd",
         "companyShortcut": "asd",
-        "departureTime": "1123123213",
-        "arrivalTime": "123213213",
         "price": "123",
-        "currency": "1ss",
-        "totalTime": -999910000,
-        "schedule":
-        [
-            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
-            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
-            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        "currency": "SEk",
+        "schedule": [
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Johannesburg",
+                "to": "Amsterdam",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "KL.png",
+                "date": 1581510000,
+                "id": "SAS33",
+                "from": "Amsterdam",
+                "to": "Cape Town",
+                "waitingTime": 60,
+                "flightTime": 180,
+                "order": 1
+            },
+            {
+                "airlineIcon": "LH.png",
+                "date": 1581513600,
+                "id": "SAS22",
+                "from": "Cape Town",
+                "to": "St. Helena",
+                "waitingTime": 120,
+                "flightTime": 240,
+                "order": 2
+            }
         ]
     },
     {
         "id": "2b4287",
-        "flightId": "1123",
+        "flightId": "KLM29",
         "companyName": "KLM",
         "companyShortcut": "KLMa",
-        "departureTime": "2002",
-        "arrivalTime": "2003",
         "price": "2015",
         "currency": "DKK",
-        "totalTime": 1,
-        "schedule":
-        [
-            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
-            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
-            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
-        ]
-    },
-    {
-        "id": "b1aa5b",
-        "flightId": "KLM89",
-        "companyName": "KLM",
-        "companyShortcut": "a",
-        "departureTime": "111111",
-        "arrivalTime": "11111111111",
-        "price": "2015",
-        "currency": "ZAR",
-        "totalTime": 11111000000,
-        "schedule":
-        [
-            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
-            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
-            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
-        ]
-    },
-    {
-        "id": "d99500",
-        "flightId": "2KL22",
-        "companyName": "asd",
-        "companyShortcut": "asd",
-        "departureTime": "122333",
-        "arrivalTime": "123333",
-        "price": "123",
-        "currency": "ZAR",
-        "totalTime": 1000,
-        "schedule":
-        [
-            {"airlineIcon":"SK.png","date":1581501600,"id":"SAS1","from":"A", "to":"B","waitingTime":0,"flightTime":80,"order":0},
-            {"airlineIcon":"KL.png","date":1581510000, "id":"SAS33","from":"B", "to":"C","waitingTime":60,"flightTime":180,"order":1},
-            {"airlineIcon":"LH.png", "date":1581513600,"id":"SAS22","from":"C", "to":"D","waitingTime":120,"flightTime":240,"order":2}
+        "schedule": [
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Hong Kong",
+                "to": "B",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "KL.png",
+                "date": 1581510000,
+                "id": "SAS33",
+                "from": "B",
+                "to": "C",
+                "waitingTime": 60,
+                "flightTime": 180,
+                "order": 1
+            },
+            {
+                "airlineIcon": "LH.png",
+                "date": 1581513600,
+                "id": "SAS22",
+                "from": "E",
+                "to": "D",
+                "waitingTime": 120,
+                "flightTime": 240,
+                "order": 2
+            }
         ]
     }
 ]

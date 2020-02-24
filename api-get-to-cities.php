@@ -6,15 +6,15 @@ $sData = file_get_contents('most-popular-flights.json');
 
 $jData = json_decode($sData);
 
-$aFromCities = array();
+$aToCities = array();
 
 foreach($jData as $key => $jFlight) {
     foreach($jFlight->schedule as $index =>$jSchedule){
-        array_push($aFromCities, $jSchedule->from);
+        array_push($aToCities, $jSchedule->to);
     }
 }
 
-$aFromCitiesUnique = array_unique($aFromCities, SORT_REGULAR); 
-$aFromCitiesValues = array_values($aFromCitiesUnique);
+$aToCitiesUnique = array_unique($aToCities, SORT_REGULAR); 
+$aToCitiesValues = array_values($aToCitiesUnique);
 
-echo json_encode($aFromCitiesValues);
+echo json_encode($aToCitiesValues);
