@@ -1,11 +1,15 @@
 <?php
 $sData = file_get_contents('most-popular-flights.json');
+$jData = array();
 
-$jData = json_decode($sData);
 
-if ( !isset($_GET['fromCity']) && !isset($_GET['toCity'])){
+if ( !isset($_GET['fromCity']) && !isset($_GET['toCity']) ){
   $jData = json_decode($sData);
-} else {
+  $sFlightsDivs = "<div>NO MATCHING FLIGHTS FOUND</div>";
+  $iCheapestPrice = 0;
+  echo "hello";
+
+} else if ( isset($_GET['toCity']) && isset($_GET['fromCity']) ) {
   // FILTERING THE JSON DATA FOR SELECTED CITIES
   $jUnfilteredData = json_decode($sData);
 
@@ -26,7 +30,9 @@ if ( !isset($_GET['fromCity']) && !isset($_GET['toCity'])){
       $sSearchToCity = strtolower($_GET['toCity']);
 
       if ( !$sFirstFromCity === $sSearchFromCity && !$sFinalToCity === $sSearchToCity ){
-        $jData = json_decode($sData);
+        $jData = [];
+        $sFlightsDivs = "<div>NO MATCHING FLIGHTS FOUND</div>";
+        $iCheapestPrice = 0;
         
       } else if ( $sFirstFromCity === $sSearchFromCity && $sFinalToCity === $sSearchToCity ) {
         $jData = array();
@@ -37,10 +43,6 @@ if ( !isset($_GET['fromCity']) && !isset($_GET['toCity'])){
     }
   }
 }
-
-
-
-$sFlightsDivs = '';
 
 function sortScheduleByOrder($a, $b) {
   return $a->order - $b->order;
@@ -53,6 +55,13 @@ function sortFlightsByCheapest($a, $b) {
 function sortFlightsByFastest($a, $b) {
   return $a->totalTime - $b->totalTime;
 }
+
+
+
+
+$sFlightsDivs = '';
+
+if ( count($jData) > 0 ) {
 
 usort($jData, "sortFlightsByCheapest");
 
@@ -146,8 +155,12 @@ foreach($jData as $index => $jFlight){
       </div>
       <button onclick=(buyModal($sFlightData))>BUY</button>
     </div>
-  </div>
-  ";
+    </div>
+    ";
+  }
+} else {
+  $iCheapestPrice = 0;
+  $sFlightsDivs = "<div><h1>NO MATCHING FLIGHTS FOUND</h1><a href='index.php'>REFRESH SEARCH </a></div>";
 }
 ?>
 
@@ -268,6 +281,16 @@ foreach($jData as $index => $jFlight){
       `
       document.querySelector('body').innerHTML += modalBuyForm;
     };
+    var urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.get("fromCity")) {
+      console.log(urlParams.get("fromCity"))
+    }
+
+    if (urlParams.get("toCity")) {
+      console.log(urlParams.get("toCity"))
+    }
+
     
   </script>
 </body>
