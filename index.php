@@ -5,9 +5,6 @@ $jData = array();
 
 if ( !isset($_GET['fromCity']) && !isset($_GET['toCity']) ){
   $jData = json_decode($sData);
-  $sFlightsDivs = "<div>NO MATCHING FLIGHTS FOUND</div>";
-  $iCheapestPrice = 0;
-  echo "hello";
 
 } else if ( isset($_GET['toCity']) && isset($_GET['fromCity']) ) {
   // FILTERING THE JSON DATA FOR SELECTED CITIES
@@ -30,14 +27,12 @@ if ( !isset($_GET['fromCity']) && !isset($_GET['toCity']) ){
       $sSearchToCity = strtolower($_GET['toCity']);
 
       if ( !$sFirstFromCity === $sSearchFromCity && !$sFinalToCity === $sSearchToCity ){
-        $jData = [];
-        $sFlightsDivs = "<div>NO MATCHING FLIGHTS FOUND</div>";
-        $iCheapestPrice = 0;
+        break;
         
       } else if ( $sFirstFromCity === $sSearchFromCity && $sFinalToCity === $sSearchToCity ) {
-        $jData = array();
 
         array_push($jData, $jUnfilteredData[$key]);
+        break;
       }
       // $sFlightFinalDestination = $jFlight->schedule[$iIndexFinal]->to;
     }
@@ -63,7 +58,20 @@ $sFlightsDivs = '';
 
 if ( count($jData) > 0 ) {
 
-usort($jData, "sortFlightsByCheapest");
+  
+  if (isset($_GET['sortBy'])) {
+    switch ($_GET['sortBy']) {
+      case 'fastest':
+        usort($jData, "sortFlightsByFastest");
+      break;
+      case 'cheapest':
+        usort($jData, "sortFlightsByCheapest");
+      break;
+      case 'best':
+        echo 'lol best';
+      break;
+    }
+  }
 
 foreach($jData as $index => $jFlight){
 
@@ -156,11 +164,12 @@ foreach($jData as $index => $jFlight){
       <button onclick=(buyModal($sFlightData))>BUY</button>
     </div>
     </div>
+    
     ";
   }
 } else {
   $iCheapestPrice = 0;
-  $sFlightsDivs = "<div><h1>NO MATCHING FLIGHTS FOUND</h1><a href='index.php'>REFRESH SEARCH </a></div>";
+  $sFlightsDivs = "<div><h1>NO MATCHING FLIGHTS FOUND</h1></div>";
 }
 ?>
 
@@ -255,6 +264,7 @@ foreach($jData as $index => $jFlight){
 
       <div id="flights">  
         <?= $sFlightsDivs ?>
+        <a class='refresh-search-btn' href='index.php'>REFRESH SEARCH </a>
       </div>
 
 

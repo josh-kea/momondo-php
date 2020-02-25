@@ -31,6 +31,10 @@ function selectFromCity(oCityResult){
   var sCityName = oCityResult.innerHTML
   document.querySelector('#inputFromCity').value = sCityName
   oFromCityResults.style.display = 'none'
+
+  let oSearchBar = document.querySelector('#search')
+  oSearchBar.querySelector('#inputFromCity').classList.remove('invalid')
+
 }
 
 // GET TO CITIES
@@ -68,6 +72,9 @@ function selectToCity(oCityResult){
   var sCityName = oCityResult.innerHTML
   document.querySelector('#inputToCity').value = sCityName
   oToCityResults.style.display = 'none'
+
+  let oSearchBar = document.querySelector('#search')
+  oSearchBar.querySelector('#inputToCity').classList.remove('invalid')
 }
 
 
@@ -75,14 +82,24 @@ function selectToCity(oCityResult){
 
 function searchCities(){
   let oSearchBar = document.querySelector('#search')
-  let sInputFromCity = oSearchBar.querySelector('#inputFromCity').value
-  let sInputToCity = oSearchBar.querySelector('#inputToCity').value
+  let sInputFromCity = oSearchBar.querySelector('#inputFromCity')
+  let sInputToCity = oSearchBar.querySelector('#inputToCity')
 
-  let sSearchUrl = `index.php?fromCity=${sInputFromCity}&toCity=${sInputToCity}`
+  let sSearchUrl = `index.php?fromCity=${sInputFromCity.value}&toCity=${sInputToCity.value}`
 
-  if ( !sInputFromCity || !sInputToCity ){
-    
-  } else if (sInputFromCity && sInputToCity) {
+  if (sInputFromCity.value.length < 1) {
+    sInputFromCity.classList.add('invalid');
+  } else {
+    sInputFromCity.classList.remove('invalid');
+  }
+
+  if (sInputToCity.value.length < 1) {
+    sInputToCity.classList.add('invalid');
+  } else {
+    sInputToCity.classList.remove('invalid');
+  }
+
+  if (sInputFromCity.value && sInputToCity.value) {
     
     location.replace(sSearchUrl)
   }
