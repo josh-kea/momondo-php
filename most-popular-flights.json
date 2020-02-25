@@ -196,6 +196,86 @@
                 "waitingTime": 0,
                 "flightTime": 80,
                 "order": 0
+            },
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Hong Kong",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Hong Kong",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Hong Kong",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            }
+        ]
+    },
+    {
+        "id": "2b4287",
+        "flightId": "KLM29",
+        "companyName": "KLM",
+        "companyShortcut": "KLMa",
+        "price": "2015",
+        "currency": "DKK",
+        "schedule": [
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Hong Kong",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Hong Kong",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Hong Kong",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
+            },
+            {
+                "airlineIcon": "SK.png",
+                "date": 1581501600,
+                "id": "SAS1",
+                "from": "Copenhagen",
+                "to": "Cape Town",
+                "waitingTime": 0,
+                "flightTime": 80,
+                "order": 0
             }
         ]
     }
